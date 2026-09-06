@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ADPIX - ساخت تبلیغ حرفه‌ای برای محصولات اینستاگرامی">
+<title>ADPIX | تبلیغ حرفه‌ای با یک عکس</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+background:#07070a;
+color:#fff;
+overflow-x:hidden;
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+width:min(1100px,92%);
+margin:auto;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(7,7,10,.85);
+backdrop-filter:blur(18px);
+border-bottom:1px solid #22222b;
+}
+
+.nav{
+height:72px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+font-size:27px;
+font-weight:900;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#8b5cf6;
+}
+
+.nav-btn{
+background:#8b5cf6;
+padding:11px 18px;
+border-radius:12px;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:90px 10px 70px;
+position:relative;
+}
+
+.glow{
+position:absolute;
+width:450px;
+height:450px;
+background:#7c3aed;
+opacity:.12;
+filter:blur(120px);
+border-radius:50%;
+left:50%;
+top:80px;
+transform:translateX(-50%);
+pointer-events:none;
+}
+
+.badge{
+display:inline-block;
+padding:9px 15px;
+border:1px solid #39276b;
+background:#130d20;
+color:#c4b5fd;
+border-radius:50px;
+font-size:13px;
+margin-bottom:25px;
+}
+
+h1{
+font-size:clamp(42px,8vw,78px);
+line-height:1.05;
+font-weight:900;
+max-width:900px;
+margin:auto;
+}
+
+.gradient{
+background:linear-gradient(90deg,#fff,#a78bfa);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.hero p{
+max-width:680px;
+margin:25px auto;
+font-size:18px;
+line-height:2;
+color:#a7a7b2;
+}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+margin-top:28px;
+}
+
+.btn{
+padding:15px 23px;
+border-radius:14px;
+font-weight:bold;
+display:inline-block;
+transition:.2s;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+}
+
+.primary{
+background:#8b5cf6;
+box-shadow:0 10px 40px rgba(139,92,246,.25);
+}
+
+.secondary{
+background:#15151b;
+border:1px solid #292933;
+}
+
+section{
+padding:65px 0;
+}
+
+.title{
+text-align:center;
+font-size:34px;
+font-weight:900;
+margin-bottom:12px;
+}
+
+.subtitle{
+text-align:center;
+color:#888894;
+margin-bottom:35px;
+line-height:1.8;
+}
+
+/* samples */
+
+.samples{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+}
+
+.sample{
+background:#111116;
+border:1px solid #23232c;
+border-radius:20px;
+overflow:hidden;
+transition:.25s;
+}
+
+.sample:hover{
+transform:translateY(-5px);
+border-color:#59418e;
+}
+
+.fake-product{
+height:260px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden;
+}
+
+.fake-product:after{
+content:"";
+position:absolute;
+width:180px;
+height:180px;
+background:#8b5cf6;
+filter:blur(70px);
+opacity:.2;
+}
+
+.product{
+font-size:90px;
+position:relative;
+z-index:2;
+filter:drop-shadow(0 20px 30px #000);
+}
+
+.sample-info{
+padding:18px;
+}
+
+.sample-info strong{
+font-size:18px;
+display:block;
+margin-bottom:7px;
+}
+
+.sample-info span{
+font-size:13px;
+color:#888;
+}
+
+/* features */
+
+.features{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+}
+
+.feature{
+background:#111116;
+border:1px solid #24242c;
+border-radius:20px;
+padding:25px;
+}
+
+.icon{
+font-size:32px;
+margin-bottom:15px;
+}
+
+.feature h3{
+margin-bottom:10px;
+}
+
+.feature p{
+color:#92929c;
+line-height:1.8;
+font-size:14px;
+}
+
+/* steps */
+
+.steps{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+counter-reset:step;
+}
+
+.step{
+background:#101014;
+border:1px solid #22222a;
+border-radius:20px;
+padding:25px;
+position:relative;
+}
+
+.number{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#8b5cf6;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+margin-bottom:18px;
+}
+
+/* price */
+
+.price-box{
+max-width:500px;
+margin:auto;
+padding:35px;
+background:linear-gradient(145deg,#171020,#0e0e13);
+border:1px solid #4b3578;
+border-radius:28px;
+text-align:center;
+box-shadow:0 20px 80px rgba(90,50,150,.12);
+}
+
+.price-box h3{
+font-size:20px;
+color:#c4b5fd;
+}
+
+.price{
+font-size:45px;
+font-weight:900;
+margin:12px 0;
+}
+
+.price-box p{
+color:#999;
+margin-bottom:20px;
+}
+
+.price-box ul{
+list-style:none;
+text-align:right;
+color:#bbb;
+line-height:2.4;
+margin-bottom:25px;
+}
+
+.price-box li:before{
+content:"✓";
+color:#a78bfa;
+font-weight:bold;
+margin-left:8px;
+}
+
+/* faq */
+
+.faq{
+max-width:750px;
+margin:auto;
+}
+
+.question{
+border-bottom:1px solid #222;
+padding:20px 5px;
+}
+
+.question b{
+display:block;
+margin-bottom:8px;
+}
+
+.question span{
+color:#888;
+font-size:14px;
+line-height:1.8;
+}
+
+/* CTA */
+
+.cta{
+text-align:center;
+padding:70px 20px;
+background:linear-gradient(145deg,#120d1c,#0d0d11);
+border:1px solid #30234a;
+border-radius:28px;
+}
+
+.cta h2{
+font-size:38px;
+margin-bottom:15px;
+}
+
+.cta p{
+color:#999;
+margin-bottom:25px;
+}
+
+/* footer */
+
+footer{
+border-top:1px solid #202027;
+padding:30px 0;
+text-align:center;
+color:#666;
+font-size:13px;
+}
+
+/* mobile */
+
+@media(max-width:800px){
+
+.nav{
+height:64px;
+}
+
+.nav-btn{
+padding:9px 13px;
+font-size:13px;
+}
+
+.hero{
+padding:70px 5px 50px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.samples,
+.features,
+.steps{
+grid-template-columns:1fr;
+}
+
+.sample{
+max-width:500px;
+margin:auto;
+width:100%;
+}
+
+section{
+padding:48px 0;
+}
+
+.title{
+font-size:28px;
+}
+
+.cta h2{
+font-size:28px;
+}
+
+.price{
+font-size:38px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+
+<div class="logo">
+AD<span>PIX</span>
+</div>
+
+<a href="#start" class="nav-btn">
+شروع رایگان
+</a>
+
+</div>
+</header>
+
+
+<main>
+
+<section class="hero">
+
+<div class="glow"></div>
+
+<div class="badge">
+⚡ مخصوص فروشنده‌های اینستاگرامی
+</div>
+
+<h1>
+از یک عکس ساده،
+<br>
+<span class="gradient">تبلیغی که می‌فروشد.</span>
+</h1>
+
+<p>
+عکس محصولت رو بده و در چند لحظه یک طرح تبلیغاتی جذاب برای پیج اینستاگرامت آماده کن.
+بدون فتوشاپ و بدون دردسر.
+</p>
+
+<div class="buttons">
+
+<a href="#start" class="btn primary">
+✨ ساخت اولین تبلیغ
+</a>
+
+<a href="#samples" class="btn secondary">
+دیدن نمونه‌ها
+</a>
+
+</div>
+
+</section>
+
+
+<section id="samples">
+
+<div class="container">
+
+<div class="title">
+نمونه‌های ADPIX
+</div>
+
+<div class="subtitle">
+چند نمونه از سبک‌هایی که می‌توانی برای تبلیغ محصولت استفاده کنی.
+</div>
+
+
+<div class="samples">
+
+<div class="sample">
+<div class="fake-product" style="background:linear-gradient(135deg,#17151d,#302447)">
+<div class="product">👟</div>
+</div>
+<div class="sample-info">
+<strong>فروش کفش</strong>
+<span>استایل اسپرت • تخفیف ویژه</span>
+</div>
+</div>
+
+
+<div class="sample">
+<div class="fake-product" style="background:linear-gradient(135deg,#111,#29201c)">
+<div class="product">🧴</div>
+</div>
+<div class="sample-info">
+<strong>محصول زیبایی</strong>
+<span>استایل لوکس • معرفی محصول</span>
+</div>
+</div>
+
+
+<div class="sample">
+<div class="fake-product" style="background:linear-gradient(135deg,#17110c,#39251b)">
+<div class="product">🍔</div>
+</div>
+<div class="sample-info">
+<strong>تبلیغ غذایی</strong>
+<span>پیشنهاد ویژه • سفارش آنلاین</span>
+</div>
+</div>
+
+
+<div class="sample">
+<div class="fake-product" style="background:linear-gradient(135deg,#10131a,#172c45)">
+<div class="product">🎧</div>
+</div>
+<div class="sample-info">
+<strong>محصول دیجیتال</strong>
+<span>مینیمال • فروش محصول</span>
+</div>
+</div>
+
+
+<div class="sample">
+<div class="fake-product" style="background:linear-gradient(135deg,#170e1e,#3b1648)">
+<div class="product">👕</div>
+</div>
+<div class="sample-info">
+<strong>فروش لباس</strong>
+<span>استایل مدرن • تخفیف</span>
+</div>
+</div>
+
+
+<div class="sample">
+<div class="fake-product" style="background:linear-gradient(135deg,#111,#25252e)">
+<div class="product">⌚</div>
+</div>
+<div class="sample-info">
+<strong>اکسسوری</strong>
+<span>استایل پریمیوم • معرفی محصول</span>
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<div class="title">
+چرا ADPIX؟
+</div>
+
+<div class="subtitle">
+برای فروشنده‌ای که می‌خواهد سریع‌تر و حرفه‌ای‌تر تبلیغ کند.
+</div>
+
+
+<div class="features">
+
+<div class="feature">
+<div class="icon">📸</div>
+<h3>فقط یک عکس</h3>
+<p>
+عکس محصولت را انتخاب کن و اطلاعات محصول را وارد کن.
+</p>
+</div>
+
+<div class="feature">
+<div class="icon">📱</div>
+<h3>مناسب اینستاگرام</h3>
+<p>
+طرح‌ها برای استوری و پست شبکه‌های اجتماعی آماده می‌شوند.
+</p>
+</div>
+
+<div class="feature">
+<div class="icon">⚡</div>
+<h3>سریع و ساده</h3>
+<p>
+لازم نیست طراحی بلد باشی؛ چند کلیک کافی است.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<div class="title">
+چطور کار می‌کند؟
+</div>
+
+<div class="subtitle">
+سه مرحله ساده.
+</div>
+
+
+<div class="steps">
+
+<div class="step">
+<div class="number">۱</div>
+<h3>محصولت را انتخاب کن</h3>
+<p style="color:#888;margin-top:10px;line-height:1.8">
+عکس محصول را وارد کن.
+</p>
+</div>
+
+<div class="step">
+<div class="number">۲</div>
+<h3>اطلاعات را وارد کن</h3>
+<p style="color:#888;margin-top:10px;line-height:1.8">
+نام، قیمت، تخفیف و سبک تبلیغ را مشخص کن.
+</p>
+</div>
+
+<div class="step">
+<div class="number">۳</div>
+<h3>تبلیغت را بساز</h3>
+<p style="color:#888;margin-top:10px;line-height:1.8">
+طرح آماده را دانلود کن و در اینستاگرام منتشر کن.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="start">
+
+<div class="container">
+
+<div class="price-box">
+
+<h3>ADPIX STARTER</h3>
+
+<div class="price">
+۹۹ هزار تومان
+</div>
+
+<p>
+برای شروع فروش حرفه‌ای
+</p>
+
+<ul>
+<li>۳۰ طراحی تبلیغاتی</li>
+<li>فرمت استوری و پست</li>
+<li>دانلود PNG</li>
+<li>ذخیره پروژه‌ها</li>
+<li>مناسب فروشگاه‌های اینستاگرامی</li>
+</ul>
+
+<a href="#" class="btn primary" onclick="startApp(event)">
+✨ شروع ساخت تبلیغ
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<div class="title">
+سؤالات متداول
+</div>
+
+<div class="faq">
+
+<div class="question">
+<b>آیا استفاده از ADPIX سخت است؟</b>
+<span>
+نه. رابط کاربری برای موبایل و استفاده سریع طراحی شده.
+</span>
+</div>
+
+<div class="question">
+<b>برای چه محصولاتی مناسب است؟</b>
+<span>
+لباس، کفش، عطر، لوازم آرایشی، غذا، تکنولوژی و تقریباً هر محصولی که برای اینستاگرام می‌فروشی.
+</span>
+</div>
+
+<div class="question">
+<b>آیا نسخه رایگان دارد؟</b>
+<span>
+بله. می‌توانیم چند طراحی اولیه را رایگان در اختیار کاربر قرار دهیم.
+</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<div class="cta">
+
+<h2>
+آماده‌ای تبلیغ بعدی رو بسازی؟
+</h2>
+
+<p>
+از همین الان اولین طراحی خودت رو شروع کن.
+</p>
+
+<a href="#" class="btn primary" onclick="startApp(event)">
+🚀 شروع رایگان ADPIX
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+© 2026 ADPIX — ساخته شده برای فروش بیشتر
+</footer>
+
+
+<script>
+
+function startApp(e){
+
+e.preventDefault();
+
+alert(
+"استودیوی ADPIX به‌زودی در همین صفحه فعال می‌شود 🚀"
+);
+
+}
+
+</script>
+
+</body>
+  </html>
