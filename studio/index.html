@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#07070b">
+<meta name="description" content="ADPIX Creative Studio">
+<title>ADPIX Studio</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#07070b;
+  --panel:#111118;
+  --panel2:#171720;
+  --line:#272733;
+  --text:#fff;
+  --muted:#9696a5;
+  --purple:#8b5cf6;
+  --purple2:#a78bfa;
+}
+
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(124,58,237,.18),transparent 35%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.top{
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  background:rgba(7,7,11,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo span{
+  color:var(--purple2);
+}
+
+.back{
+  border:1px solid var(--line);
+  background:#111118;
+  color:#ddd;
+  padding:10px 14px;
+  border-radius:12px;
+}
+
+.wrap{
+  width:min(1200px,94%);
+  margin:auto;
+  padding:25px 0 60px;
+}
+
+.hero{
+  text-align:center;
+  margin:15px 0 28px;
+}
+
+.badge{
+  display:inline-block;
+  border:1px solid #3b2863;
+  background:#130e20;
+  color:#c4b5fd;
+  border-radius:50px;
+  padding:8px 14px;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.hero h1{
+  font-size:clamp(30px,6vw,52px);
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:var(--muted);
+  line-height:1.9;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:390px 1fr;
+  gap:20px;
+  align-items:start;
+}
+
+.panel{
+  background:rgba(17,17,24,.92);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:0 20px 70px rgba(0,0,0,.2);
+}
+
+.panel h2{
+  font-size:18px;
+  margin-bottom:18px;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  color:#c8c8d1;
+  margin-bottom:7px;
+}
+
+input,select,textarea{
+  width:100%;
+  background:#09090e;
+  color:white;
+  border:1px solid #292934;
+  outline:none;
+  border-radius:13px;
+  padding:13px;
+  transition:.2s;
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:#7250c8;
+  box-shadow:0 0 0 3px rgba(139,92,246,.1);
+}
+
+textarea{
+  min-height:80px;
+  resize:vertical;
+  line-height:1.8;
+}
+
+.upload{
+  border:1px dashed #50406e;
+  background:#0d0b13;
+  border-radius:17px;
+  padding:22px 12px;
+  text-align:center;
+  margin-bottom:16px;
+}
+
+.upload-icon{
+  font-size:35px;
+  margin-bottom:8px;
+}
+
+.upload strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.upload small{
+  color:#777784;
+  line-height:1.7;
+}
+
+.upload input{
+  margin-top:12px;
+  border:0;
+  padding:8px;
+  background:#15151c;
+}
+
+.group-title{
+  color:#cfcfd8;
+  font-size:13px;
+  margin:20px 0 9px;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+
+.opt{
+  border:1px solid #292934;
+  background:#0c0c11;
+  color:#bbb;
+  border-radius:12px;
+  padding:12px 8px;
+  text-align:center;
+  transition:.2s;
+}
+
+.opt:hover{
+  border-color:#6243a6;
+}
+
+.opt.active{
+  border-color:var(--purple);
+  background:rgba(139,92,246,.14);
+  color:white;
+  box-shadow:0 0 0 1px rgba(139,92,246,.15) inset;
+}
+
+.generate{
+  width:100%;
+  border:0;
+  margin-top:20px;
+  padding:15px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
+  color:white;
+  font-weight:900;
+  font-size:16px;
+  box-shadow:0 12px 35px rgba(109,40,217,.28);
+}
+
+.generate:active{
+  transform:scale(.98);
+}
+
+.preview-panel{
+  min-height:650px;
+  display:flex;
+  flex-direction:column;
+}
+
+.preview-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.preview-head h2{
+  margin:0;
+}
+
+.status{
+  color:#9f9fa9;
+  font-size:12px;
+}
+
+.canvas-wrap{
+  flex:1;
+  min-height:550px;
+  border-radius:20px;
+  background:
+    radial-gradient(circle,#171722 1px,transparent 1px);
+  background-size:15px 15px;
+  border:1px solid #252530;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  overflow:auto;
+}
+
+canvas{
+  max-width:100%;
+  max-height:72vh;
+  width:auto;
+  height:auto;
+  border-radius:12px;
+  box-shadow:0 25px 80px rgba(0,0,0,.5);
+  background:#111;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.action{
+  border:1px solid #302f3b;
+  background:#14141b;
+  color:#fff;
+  padding:13px;
+  border-radius:13px;
+  font-weight:bold;
+}
+
+.action.primary{
+  background:#8b5cf6;
+  border-color:#8b5cf6;
+}
+
+.tip{
+  color:#777783;
+  text-align:center;
+  font-size:11px;
+  line-height:1.8;
+  margin-top:13px;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%) translateY(100px);
+  background:#191921;
+  border:1px solid #383844;
+  color:white;
+  padding:13px 18px;
+  border-radius:14px;
+  z-index:100;
+  transition:.3s;
+  opacity:0;
+  box-shadow:0 15px 50px rgba(0,0,0,.4);
+}
+
+.toast.show{
+  transform:translateX(-50%) translateY(0);
+  opacity:1;
+}
+
+@media(max-width:900px){
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .preview-panel{
+    min-height:auto;
+  }
+
+  .canvas-wrap{
+    min-height:450px;
+  }
+}
+
+@media(max-width:600px){
+  .wrap{
+    width:94%;
+    padding-top:18px;
+  }
+
+  .top{
+    height:62px;
+  }
+
+  .logo{
+    font-size:21px;
+  }
+
+  .panel{
+    border-radius:19px;
+    padding:15px;
+  }
+
+  .canvas-wrap{
+    padding:10px;
+    min-height:390px;
+  }
+
+  canvas{
+    max-height:65vh;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+  <div class="logo">AD<span>PIX</span></div>
+
+  <a class="back" href="../">
+    ← برگشت
+  </a>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="badge">⚡ ADPIX CREATIVE STUDIO</div>
+    <h1>تبلیغ محصولت رو بساز</h1>
+    <p>
+      عکس محصول، اطلاعات و سبک تبلیغ رو انتخاب کن؛
+      ADPIX طرح آماده انتشار می‌سازه.
+    </p>
+  </section>
+
+  <div class="layout">
+
+    <!-- CONTROLS -->
+    <section class="panel">
+
+      <h2>🎨 تنظیمات تبلیغ</h2>
+
+      <div class="upload">
+        <div class="upload-icon">📸</div>
+        <strong>عکس محصول</strong>
+        <small>
+          یک عکس واضح از محصولت انتخاب کن
+        </small>
+
+        <input
+          id="imageInput"
+          type="file"
+          accept="image/*"
+        >
+      </div>
+
+      <div class="field">
+        <label>نام محصول</label>
+        <input
+          id="productName"
+          type="text"
+          placeholder="مثلاً کت اسپرت"
+          value="محصول جدید"
+        >
+      </div>
+
+      <div class="field">
+        <label>برند</label>
+        <input
+          id="brand"
+          type="text"
+          placeholder="نام برند"
+          value="ADPIX STORE"
+        >
+      </div>
+
+      <div class="field">
+        <label>قیمت</label>
+        <input
+          id="price"
+          type="text"
+          inputmode="numeric"
+          placeholder="مثلاً 899000"
+          value="899000"
+        >
+      </div>
+
+      <div class="field">
+        <label>درصد تخفیف</label>
+        <input
+          id="discount"
+          type="number"
+          min="0"
+          max="99"
+          placeholder="مثلاً 20"
+          value="20"
+        >
+      </div>
+
+      <div class="group-title">
+        دسته محصول
+      </div>
+
+      <div class="options" id="categoryOptions">
+        <button class="opt active" data-value="fashion">👕 لباس</button>
+        <button class="opt" data-value="beauty">💄 زیبایی</button>
+        <button class="opt" data-value="food">🍔 غذا</button>
+        <button class="opt" data-value="tech">🎧 دیجیتال</button>
+      </div>
+
+      <div class="group-title">
+        سبک طراحی
+      </div>
+
+      <div class="options" id="styleOptions">
+        <button class="opt active" data-value="luxury">💎 لوکس</button>
+        <button class="opt" data-value="minimal">◻️ مینیمال</button>
+        <button class="opt" data-value="sport">⚡ اسپرت</button>
+        <button class="opt" data-value="neon">🌈 نئون</button>
+      </div>
+
+      <div class="group-title">
+        فرمت خروجی
+      </div>
+
+      <div class="options" id="formatOptions">
+        <button class="opt active" data-value="story">📱 Story</button>
+        <button class="opt" data-value="square">⬛ 1:1</button>
+        <button class="opt" data-value="portrait">🖼️ 4:5</button>
+      </div>
+
+      <div class="field" style="margin-top:16px">
+        <label>متن تبلیغ</label>
+        <textarea id="scenario">فروش ویژه — همین حالا سفارش بده</textarea>
+      </div>
+
+      <button class="generate" id="generateBtn">
+        ✨ ساخت تبلیغ
+      </button>
+
+    </section>
+
+    <!-- PREVIEW -->
+    <section class="panel preview-panel">
+
+      <div class="preview-head">
+        <h2>🖼️ پیش‌نمایش</h2>
+        <span class="status" id="status">
+          آماده ساخت
+        </span>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="canvas" width="1080" height="1920"></canvas>
+      </div>
+
+      <div class="actions">
+        <button class="action primary" id="downloadBtn">
+          ⬇️ دانلود PNG
+        </button>
+
+        <button class="action" id="shareBtn">
+          📲 اشتراک‌گذاری
+        </button>
+      </div>
+
+      <div class="tip">
+        کیفیت خروجی برای استفاده در استوری و پست اینستاگرام مناسب است.
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let uploadedImage = null;
+
+let state = {
+  category: "fashion",
+  style: "luxury",
+  format: "story"
+};
+
+const imageInput = document.getElementById("imageInput");
+
+const productName = document.getElementById("productName");
+const brand = document.getElementById("brand");
+const price = document.getElementById("price");
+const discount = document.getElementById("discount");
+const scenario = document.getElementById("scenario");
+
+const statusText = document.getElementById("status");
+const toast = document.getElementById("toast");
+
+
+/* -------------------------
+   HELPERS
+------------------------- */
+
+function showToast(text){
+
+  toast.textContent = text;
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },2200);
+}
+
+
+function formatPrice(value){
+
+  if(!value) return "";
+
+  const clean = String(value).replace(/[^\d]/g,"");
+
+  if(!clean) return "";
+
+  return Number(clean).toLocaleString("fa-IR") + " تومان";
+}
+
+
+function roundedRect(ctx,x,y,w,h,r){
+
+  ctx.beginPath();
+
+  ctx.moveTo(x+r,y);
+
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+
+  ctx.closePath();
+}
+
+
+function fitText(text,maxWidth,fontSize){
+
+  ctx.font = `900 ${fontSize}px Tahoma`;
+
+  if(ctx.measureText(text).width <= maxWidth){
+    return text;
+  }
+
+  while(
+    text.length > 4 &&
+    ctx.measureText(text+"…").width > maxWidth
+  ){
+    text = text.slice(0,-1);
+  }
+
+  return text+"…";
+}
+
+
+/* -------------------------
+   FORMAT
+------------------------- */
+
+function setCanvasSize(){
+
+  if(state.format === "story"){
+
+    canvas.width = 1080;
+    canvas.height = 1920;
+
+  }else if(state.format === "square"){
+
+    canvas.width = 1080;
+    canvas.height = 1080;
+
+  }else{
+
+    canvas.width = 1080;
+    canvas.height = 1350;
+
+  }
+}
+
+
+/* -------------------------
+   BACKGROUND
+------------------------- */
+
+function drawBackground(){
+
+  const w = canvas.width;
+  const h = canvas.height;
+
+  let g;
+
+  if(state.style === "luxury"){
+
+    g = ctx.createLinearGradient(0,0,w,h);
+    g.addColorStop(0,"#090909");
+    g.addColorStop(.5,"#20182a");
+    g.addColorStop(1,"#050505");
+
+  }
+
+  else if(state.style === "minimal"){
+
+    g = ctx.createLinearGradient(0,0,w,h);
+    g.addColorStop(0,"#f5f5f5");
+    g.addColorStop(1,"#d8d8dc");
+
+  }
+
+  else if(state.style === "sport"){
+
+    g = ctx.createLinearGradient(0,0,w,h);
+    g.addColorStop(0,"#080b12");
+    g.addColorStop(.55,"#10233b");
+    g.addColorStop(1,"#05070b");
+
+  }
+
+  else{
+
+    g = ctx.createLinearGradient(0,0,w,h);
+    g.addColorStop(0,"#08000d");
+    g.addColorStop(.45,"#270b3d");
+    g.addColorStop(1,"#030006");
+
+  }
+
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,w,h);
+
+
+  /* glow */
+
+  const glow = ctx.createRadialGradient(
+    w*.5,
+    h*.45,
+    20,
+    w*.5,
+    h*.45,
+    w*.65
+  );
+
+  if(state.style === "minimal"){
+    glow.addColorStop(0,"rgba(120,120,130,.12)");
+  }else{
+    glow.addColorStop(0,"rgba(139,92,246,.28)");
+  }
+
+  glow.addColorStop(1,"rgba(0,0,0,0)");
+
+  ctx.fillStyle = glow;
+  ctx.fillRect(0,0,w,h);
+}
+
+
+/* -------------------------
+   DECORATION
+------------------------- */
+
+function drawDecoration(){
+
+  const w = canvas.width;
+  const h = canvas.height;
+
+  ctx.save();
+
+  ctx.globalAlpha = .13;
+
+  ctx.strokeStyle =
+    state.style === "minimal"
+      ? "#333"
+      : "#b794ff";
+
+  ctx.lineWidth = 3;
+
+  for(let i=0;i<7;i++){
+
+    ctx.beginPath();
+
+    ctx.arc(
+      w*.5,
+      h*.5,
+      250 + i*65,
+      0,
+      Math.PI*2
+    );
+
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+
+/* -------------------------
+   PRODUCT IMAGE
+------------------------- */
+
+function drawProduct(){
+
+  const w = canvas.width;
+  const h = canvas.height;
+
+  const boxW = w*.72;
+  const boxH =
+    state.format === "story"
+      ? h*.43
+      : h*.48;
+
+  const x = (w-boxW)/2;
+  const y = h*.24;
+
+  /* shadow */
+
+  ctx.save();
+
+  ctx.shadowColor = "rgba(0,0,0,.55)";
+  ctx.shadowBlur = 50;
+
+  roundedRect(
+    ctx,
+    x,
+    y,
+    boxW,
+    boxH,
+    35
+  );
+
+  ctx.fillStyle =
+    state.style === "minimal"
+      ? "rgba(255,255,255,.35)"
+      : "rgba(255,255,255,.05)";
+
+  ctx.fill();
+
+  ctx.restore();
+
+
+  if(!uploadedImage){
+
+    ctx.save();
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    ctx.fillStyle =
+      state.style === "minimal"
+        ? "#555"
+        : "#bbb";
+
+    ctx.font = "bold 38px Tahoma";
+
+    ctx.fillText(
+      "عکس محصول را آپلود کن",
+      w/2,
+      y+boxH/2
+    );
+
+    ctx.font = "90px Arial";
+
+    ctx.fillText(
+      "📸",
+      w/2,
+      y+boxH/2-95
+    );
+
+    ctx.restore();
+
+    return;
+  }
+
+
+  /* contain image */
+
+  const imgRatio =
+    uploadedImage.width /
+    uploadedImage.height;
+
+  const boxRatio = boxW/boxH;
+
+  let drawW,drawH;
+
+  if(imgRatio > boxRatio){
+
+    drawW = boxW*.88;
+    drawH = drawW/imgRatio;
+
+  }else{
+
+    drawH = boxH*.88;
+    drawW = drawH*imgRatio;
+
+  }
+
+  const dx = w/2-drawW/2;
+  const dy = y+boxH/2-drawH/2;
+
+
+  ctx.save();
+
+  roundedRect(
+    ctx,
+    dx,
+    dy,
+    drawW,
+    drawH,
+    22
+  );
+
+  ctx.clip();
+
+  ctx.drawImage(
+    uploadedImage,
+    dx,
+    dy,
+    drawW,
+    drawH
+  );
+
+  ctx.restore();
+}
+
+
+/* -------------------------
+   TEXT
+------------------------- */
+
+function drawTexts(){
+
+  const w = canvas.width;
+  const h = canvas.height;
+
+  const darkText =
+    state.style === "minimal";
+
+  const mainColor =
+    darkText ? "#111" : "#fff";
+
+  const subColor =
+    darkText ? "#555" : "rgba(255,255,255,.68)";
+
+
+  /* brand */
+
+  ctx.textAlign = "center";
+
+  ctx.font = "bold 30px Tahoma";
+
+  ctx.fillStyle =
+    darkText ? "#444" : "#c4b5fd";
+
+  ctx.fillText(
+    brand.value || "ADPIX STORE",
+    w/2,
+    h*.09
+  );
+
+
+  /* category */
+
+  let catText = "";
+
+  if(state.category === "fashion"){
+    catText = "FASHION";
+  }else if(state.category === "beauty"){
+    catText = "BEAUTY";
+  }else if(state.category === "food"){
+    catText = "FOOD";
+  }else{
+    catText = "TECH";
+  }
+
+  ctx.font = "bold 20px Arial";
+
+  ctx.fillStyle = subColor;
+
+  ctx.fillText(
+    catText,
+    w/2,
+    h*.13
+  );
+
+
+  /* product title */
+
+  let title =
+    productName.value.trim() ||
+    "محصول جدید";
+
+  title = fitText(
+    title,
+    w*.78,
+    state.format === "square" ? 55 : 62
+  );
+
+  ctx.font =
+    `900 ${state.format === "square" ? 55 : 62}px Tahoma`;
+
+  ctx.fillStyle = mainColor;
+
+  ctx.fillText(
+    title,
+    w/2,
+    h*.73
+  );
+
+
+  /* scenario */
+
+  ctx.font = "bold 27px Tahoma";
+
+  ctx.fillStyle = subColor;
+
+  let sc =
+    scenario.value.trim() ||
+    "فروش ویژه — همین حالا سفارش بده";
+
+  sc = fitText(sc,w*.78,27);
+
+  ctx.fillText(
+    sc,
+    w/2,
+    h*.78
+  );
+
+
+  /* price */
+
+  const p = formatPrice(price.value);
+
+  if(p){
+
+    ctx.font = "900 42px Tahoma";
+
+    ctx.fillStyle =
+      darkText ? "#111" : "#fff";
+
+    ctx.fillText(
+      p,
+      w/2,
+      h*.87
+    );
+  }
+
+
+  /* discount */
+
+  const d = Number(discount.value);
+
+  if(d > 0){
+
+    const badgeW = 190;
+    const badgeH = 70;
+
+    const bx = w-badgeW-50;
+    const by = 55;
+
+    ctx.save();
+
+    ctx.fillStyle = "#8b5cf6";
+
+    roundedRect(
+      ctx,
+      bx,
+      by,
+      badgeW,
+      badgeH,
+      18
+    );
+
+    ctx.fill();
+
+    ctx.fillStyle = "#fff";
+
+    ctx.textAlign = "center";
+
+    ctx.font = "900 28px Tahoma";
+
+    ctx.fillText(
+      `${d}% تخفیف`,
+      bx+badgeW/2,
+      by+45
+    );
+
+    ctx.restore();
+  }
+
+
+  /* footer */
+
+  ctx.font = "bold 19px Tahoma";
+
+  ctx.fillStyle = subColor;
+
+  ctx.fillText(
+    "برای سفارش دایرکت بده",
+    w/2,
+    h*.94
+  );
+}
+
+
+/* -------------------------
+   GENERATE
+------------------------- */
+
+function generate(){
+
+  statusText.textContent = "در حال ساخت...";
+
+  setCanvasSize();
+
+  drawBackground();
+
+  drawDecoration();
+
+  drawProduct();
+
+  drawTexts();
+
+  statusText.textContent = "طرح آماده است ✓";
+
+  saveProject();
+
+  showToast("تبلیغ با موفقیت ساخته شد ✨");
+}
+
+
+/* -------------------------
+   IMAGE UPLOAD
+------------------------- */
+
+imageInput.addEventListener("change",function(){
+
+  const file = this.files[0];
+
+  if(!file) return;
+
+  if(!file.type.startsWith("image/")){
+
+    showToast("لطفاً یک عکس انتخاب کن");
+
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+
+    const img = new Image();
+
+    img.onload = function(){
+
+      uploadedImage = img;
+
+      generate();
+
+      showToast("عکس محصول اضافه شد 📸");
+    };
+
+    img.src = e.target.result;
+  };
+
+  reader.readAsDataURL(file);
+});
+
+
+/* -------------------------
+   OPTION SYSTEM
+------------------------- */
+
+function setupOptions(id,key){
+
+  const box = document.getElementById(id);
+
+  box.querySelectorAll(".opt").forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+      box.querySelectorAll(".opt")
+        .forEach(x=>x.classList.remove("active"));
+
+      btn.classList.add("active");
+
+      state[key] = btn.dataset.value;
+
+      generate();
+    });
+
+  });
+}
+
+
+setupOptions(
+  "categoryOptions",
+  "category"
+);
+
+setupOptions(
+  "styleOptions",
+  "style"
+);
+
+setupOptions(
+  "formatOptions",
+  "format"
+);
+
+
+/* -------------------------
+   LIVE INPUT
+------------------------- */
+
+[
+  productName,
+  brand,
+  price,
+  discount,
+  scenario
+].forEach(el=>{
+
+  el.addEventListener("input",()=>{
+
+    generate();
+
+  });
+
+});
+
+
+/* -------------------------
+   DOWNLOAD
+------------------------- */
+
+document
+.getElementById("downloadBtn")
+.addEventListener("click",()=>{
+
+  generate();
+
+  const link =
+    document.createElement("a");
+
+  link.download =
+    "ADPIX-"+Date.now()+".png";
+
+  link.href =
+    canvas.toDataURL("image/png");
+
+  link.click();
+
+  showToast("دانلود شروع شد ⬇️");
+});
+
+
+/* -------------------------
+   SHARE
+------------------------- */
+
+document
+.getElementById("shareBtn")
+.addEventListener("click",async()=>{
+
+  generate();
+
+  canvas.toBlob(async(blob)=>{
+
+    if(!blob) return;
+
+    const file = new File(
+      [blob],
+      "ADPIX.png",
+      {type:"image/png"}
+    );
+
+    if(
+      navigator.share &&
+      navigator.canShare &&
+      navigator.canShare({files:[file]})
+    ){
+
+      try{
+
+        await navigator.share({
+          title:"ADPIX",
+          text:"تبلیغ محصول من با ADPIX",
+          files:[file]
+        });
+
+      }catch(e){}
+
+    }else{
+
+      showToast(
+        "اشتراک‌گذاری فایل روی این مرورگر فعال نیست"
+      );
+    }
+
+  },"image/png");
+});
+
+
+/* -------------------------
+   LOCAL SAVE
+------------------------- */
+
+function saveProject(){
+
+  try{
+
+    const data = {
+
+      productName:productName.value,
+      brand:brand.value,
+      price:price.value,
+      discount:discount.value,
+      scenario:scenario.value,
+      category:state.category,
+      style:state.style,
+      format:state.format
+
+    };
+
+    localStorage.setItem(
+      "adpix_project",
+      JSON.stringify(data)
+    );
+
+  }catch(e){}
+}
+
+
+function loadProject(){
+
+  try{
+
+    const raw =
+      localStorage.getItem("adpix_project");
+
+    if(!raw) return;
+
+    const data =
+      JSON.parse(raw);
+
+    productName.value =
+      data.productName || productName.value;
+
+    brand.value =
+      data.brand || brand.value;
+
+    price.value =
+      data.price || price.value;
+
+    discount.value =
+      data.discount || discount.value;
+
+    scenario.value =
+      data.scenario || scenario.value;
+
+    if(data.category){
+
+      state.category = data.category;
+
+      document
+        .querySelectorAll("#categoryOptions .opt")
+        .forEach(btn=>{
+          btn.classList.toggle(
+            "active",
+            btn.dataset.value === data.category
+          );
+        });
+    }
+
+    if(data.style){
+
+      state.style = data.style;
+
+      document
+        .querySelectorAll("#styleOptions .opt")
+        .forEach(btn=>{
+          btn.classList.toggle(
+            "active",
+            btn.dataset.value === data.style
+          );
+        });
+    }
+
+    if(data.format){
+
+      state.format = data.format;
+
+      document
+        .querySelectorAll("#formatOptions .opt")
+        .forEach(btn=>{
+          btn.classList.toggle(
+            "active",
+            btn.dataset.value === data.format
+          );
+        });
+    }
+
+  }catch(e){}
+}
+
+
+/* -------------------------
+   BUTTON
+------------------------- */
+
+document
+.getElementById("generateBtn")
+.addEventListener("click",generate);
+
+
+/* -------------------------
+   START
+------------------------- */
+
+loadProject();
+
+setCanvasSize();
+
+drawBackground();
+
+drawDecoration();
+
+drawProduct();
+
+drawTexts();
+
+</script>
+
+</body>
+  </html>
